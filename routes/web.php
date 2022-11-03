@@ -15,6 +15,13 @@ use App\Http\Controllers\Color\ShowController as ColorShowController;
 use App\Http\Controllers\Color\StoreController as ColorStoreController;
 use App\Http\Controllers\Color\UpdateController as ColorUpdateController;
 use App\Http\Controllers\Main\IndexController;
+use App\Http\Controllers\Product\CreateController as ProductCreateController;
+use App\Http\Controllers\Product\DeleteController as ProductDeleteController;
+use App\Http\Controllers\Product\EditController as ProductEditController;
+use App\Http\Controllers\Product\IndexController as ProductIndexController;
+use App\Http\Controllers\Product\ShowController as ProductShowController;
+use App\Http\Controllers\Product\StoreController as ProductStoreController;
+use App\Http\Controllers\Product\UpdateController as ProductUpdateController;
 use App\Http\Controllers\Tag\CreateController;
 use App\Http\Controllers\Tag\DeleteController;
 use App\Http\Controllers\Tag\EditController;
@@ -83,4 +90,15 @@ Route::group(['prefix' => 'users'], function() {
   Route::patch('/{user}', UserUpdateController::class)->name('user.update');
   Route::delete('/{user}', UserDeleteController::class)->name('user.delete');
 });
+
+Route::group(['prefix' => 'products'], function() {
+  Route::get('/', ProductIndexController::class)->name('product.index');
+  Route::get('/create', ProductCreateController::class)->name('product.create');
+  Route::post('/', ProductStoreController::class)->name('product.store');
+  Route::get('/{product}/edit', ProductEditController::class)->name('product.edit');
+  Route::get('/{product}', ProductShowController::class)->name('product.show');
+  Route::patch('/{product}', ProductUpdateController::class)->name('product.update');
+  Route::delete('/{product}', ProductDeleteController::class)->name('product.delete');
+});
+
 
